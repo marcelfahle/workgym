@@ -51,8 +51,21 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [webcamRef, frameRate]);
 
+  function buddySpeed(fps: number) {
+    switch (fps) {
+      case 100:
+        return "10 FPS 🔥🔥🔥"
+      case 500:
+        return "2 FPS"
+      case 1000:
+        return "1 FPS "
+      case 2000:
+        return "0.5 FPS 🐌🐌🐌"
+    }
+  }
+
   return (
-    <div className='' >
+    <div className='prose max-w-2xl mx-auto' >
       <h1>Work Gym</h1>
       <div id="mycam">
         <h2>My Cam</h2>
@@ -75,7 +88,7 @@ export default function Home() {
         </div>
       </div>
       <div style={{ marginTop: 100 }}>
-        <h2>Buddies</h2>
+        <h2>My Buddies in {buddySpeed(frameRate)}</h2>
         <div style={{ display: 'flex' }}>
           {Object.entries(avatars).map(([sessionId, img]) => (
             <div key={sessionId}>
